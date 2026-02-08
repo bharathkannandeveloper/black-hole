@@ -848,13 +848,26 @@ function setupGUI() {
 
     // --- Scroll to Rotate & Spiral (Zoom In) ---
     $('#portfolio-container').on('scroll', function () {
-        // We do NOT disable motion here, allowing "Auto Rotation" to persist if checked.
-
         var el = $(this)[0];
         var maxScroll = el.scrollHeight - el.clientHeight;
         if (maxScroll <= 0) return;
 
         var scrollPct = el.scrollTop / maxScroll;
+
+        // --- Profile Scroll Effect (Always active) ---
+        // Scale down and fade out profile as we scroll down
+        var profileScale = Math.max(0.8, 1 - scrollPct * 0.5);
+        var profileOpacity = Math.max(0, 1 - scrollPct * 3);
+        var profileY = scrollPct * 200; // Parallax move down
+
+        $('#profile').css({
+            'transform': 'translateY(' + profileY + 'px) scale(' + profileScale + ')',
+            'opacity': profileOpacity
+        });
+
+        // --- 3D Background Effects (Desktop Only) ---
+        // On mobile, spinning background can be dizzying/performance heavy
+        if (window.innerWidth < 650) return;
 
         // Map scroll to rotation (0 to 90 degrees for gentler effect)
         var angle = scrollPct * (Math.PI * 0.5); // reduced from Math.PI
@@ -877,11 +890,6 @@ function setupGUI() {
         p.observer.orbital_inclination = newPitch;
         shader.parameters.observer.orbital_inclination = newPitch;
 
-        // Sync GUI controls if they exist (visual feedback)
-        // Note: In a real app we might hide these controls, but good for debug
-        // iterating over controllers is hard without reference, so we skip explicit GUI update 
-        // unless we stored them. But `p` is the GUI object, so it holds state.
-
         // Circular orbit in XZ plane based on new distance
         var x = Math.sin(angle) * newDist;
         var z = Math.cos(angle) * newDist;
@@ -892,17 +900,6 @@ function setupGUI() {
 
         // Force update uniforms
         updateUniforms();
-
-        // --- Profile Scroll Effect ---
-        // Scale down and fade out profile as we scroll down
-        var profileScale = Math.max(0.8, 1 - scrollPct * 0.5);
-        var profileOpacity = Math.max(0, 1 - scrollPct * 3);
-        var profileY = scrollPct * 200; // Parallax move down
-
-        $('#profile').css({
-            'transform': 'translateY(' + profileY + 'px) scale(' + profileScale + ')',
-            'opacity': profileOpacity
-        });
     });
 
     // --- ISS Cursor Follow ---
@@ -1012,19 +1009,32 @@ function setupGUI() {
         if (tiltY > maxTilt) tiltY = maxTilt;
         if (tiltY < -maxTilt) tiltY = -maxTilt;
 
-        // Apply damping for milder effect
-        tiltX *= 0.05;
-        tiltY *= 0.05;
+        // Apply damping from slider (or default very low)
+        var sensitivity = 0.05;
+        var senseSlider = document.getElementById('ctrl-gyro-sensitivity');
+        if (senseSlider) {
+            sensitivity = parseFloat(senseSlider.value);
+        }
+
+        tiltX *= sensitivity;
+        tiltY *= sensitivity;
 
         // Apply tilt to camera position (subtle parallax)
-        // Note: This requires the camera to be accessible or handled in the update loop
-        // Apply to ALL cards
         $('.grid-card').css('transform',
             'translateY(-5px) ' +
             'rotateX(' + (-tiltX) + 'deg) ' +
             'rotateY(' + (tiltY) + 'deg)'
         );
     });
+
+    // --- Scroll to Rotate & Spiral (Zoom In) ---
+    /*
+     DISABLING 3D SCROLL EFFECT ON MOBILE
+     We override the scroll logic block or modify it. 
+     Since the scroll block was defined earlier (lines 850+), 
+     we need to modify THAT block, not just append here.
+     I will use REPLACE on the earlier block instead of this append.
+    */
     // --- Sharpness / Resolution Control ---
     var sharpnessCtrl = document.getElementById('ctrl-sharpness');
     if (sharpnessCtrl) {
