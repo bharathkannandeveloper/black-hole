@@ -865,9 +865,9 @@ function setupGUI() {
             'opacity': profileOpacity
         });
 
-        // --- 3D Background Effects (Desktop Only) ---
-        // On mobile, spinning background can be dizzying/performance heavy
-        if (window.innerWidth < 650) return;
+        // --- 3D Background Effects (Desktop & Mobile) ---
+        // Enabled on mobile as per user request
+        // if (window.innerWidth < 650) return;
 
         // Map scroll to rotation (0 to 90 degrees for gentler effect)
         var angle = scrollPct * (Math.PI * 0.5); // reduced from Math.PI
@@ -1009,8 +1009,8 @@ function setupGUI() {
         if (tiltY > maxTilt) tiltY = maxTilt;
         if (tiltY < -maxTilt) tiltY = -maxTilt;
 
-        // Apply damping from slider (or default very low)
-        var sensitivity = 0.05;
+        // Apply damping from slider (or default slightly increased)
+        var sensitivity = 0.15; // Increased from 0.05
         var senseSlider = document.getElementById('ctrl-gyro-sensitivity');
         if (senseSlider) {
             sensitivity = parseFloat(senseSlider.value);
