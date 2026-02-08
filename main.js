@@ -1012,6 +1012,10 @@ function setupGUI() {
         if (tiltY > maxTilt) tiltY = maxTilt;
         if (tiltY < -maxTilt) tiltY = -maxTilt;
 
+        // Apply damping for milder effect
+        tiltX *= 0.2;
+        tiltY *= 0.2;
+
         // Apply tilt to camera position (subtle parallax)
         // Note: This requires the camera to be accessible or handled in the update loop
         // Apply to ALL cards
