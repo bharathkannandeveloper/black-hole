@@ -494,6 +494,7 @@ canvas {
     .grid-section-title,
     a[href*="job-radar"],
     a[href*="chess"],
+    a[href*="Ai-Resume"],
     a[id="medium-article"],
     .grid-card[onclick^="open"]
 
