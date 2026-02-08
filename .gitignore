@@ -2,3 +2,4 @@
 img/milkyway.png
 *.pyc
 *.ipynb
+.vscode/settings.json
