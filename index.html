@@ -1,63 +1,409 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Black Hole</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-        <meta property="og:url"                content="https://oseiskar.github.io/black-hole" />
-        <meta property="og:title"              content="THREE.js Black Hole" />
-        <meta property="og:description"        content="A real time ray-traced simulation of a Schwarzschild black hole. Needs a decent GPU and a recent variant of Chrome or Firefox to run smoothly." />
-        <meta property="og:image"              content="http://oseiskar.github.io/img/black-hole.jpg" />
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    </head>
-    <body>
-        <div id="hint-text" class="hidden-phone initially-hidden">
-            Drag to rotate or toggle variables on the right ⟶
-        </div>
-        <div class="info ">
-            <div id="loader">
-                Loading...
-                <div class="disclaimer">
-                This is a WebGL demo and very unlikely to work unless you run
-                a recent variant of Chrome or Firefox
+
+<head>
+    <title>Black Hole Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta property="og:url" content="https://oseiskar.github.io/black-hole" />
+    <meta property="og:title" content="THREE.js Black Hole" />
+    <meta property="og:description"
+        content="A real time ray-traced simulation of a Schwarzschild black hole. Needs a decent GPU and a recent variant of Chrome or Firefox to run smoothly." />
+    <meta property="og:image" content="http://oseiskar.github.io/img/black-hole.jpg" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Custom User Interface -->
+    <div id="ui-layer">
+
+        <!-- Linktree Grid Portfolio -->
+        <div id="portfolio-container">
+            <div id="profile" class="glass-panel">
+                <img src="img/profile.jpg" alt="Bharathkannan R" class="avatar-img">
+                <h1 style="font-size: 2.2rem; margin-bottom: 5px;">Bharathkannan R</h1>
+                <p class="bio" style="margin-bottom: 15px;">Generative AI Associate | Python Developer</p>
+
+                <!-- Autonomous System Badge -->
+                <div class="autonomous-badge">
+                    <i class="fas fa-robot spin-slow"></i>
+                    <span><strong>Autonomous System:</strong> Continuously building & publishing new experiments
+                        daily.</span>
+                    <div class="status-dot"></div>
                 </div>
             </div>
 
+            <div id="link-grid">
+
+                <!-- Top Section: Resume & Key Links -->
+
+
+
+                <a href="https://www.linkedin.com/in/bharathkannan-careers" target="_blank"
+                    class="grid-card glass-panel span-2 wide">
+                    <i class="fab fa-linkedin"></i>
+                    <div class="card-text">
+                        <h3>LinkedIn</h3>
+                        <p>Connect with me</p>
+                    </div>
+                </a>
+
+                <a href="https://github.com/bharathkannandeveloper" target="_blank" class="grid-card glass-panel">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+
+                <a href="https://bharathkannan.godaddysites.com/" target="_blank" class="grid-card glass-panel">
+                    <i class="fas fa-globe"></i>
+                    <span>Website</span>
+                </a>
+
+
+
+
+                <!-- Projects Section -->
+                <div class="grid-section-title" style="grid-column: span 4;">Key Projects</div>
+
+                <a href="https://job-radar.edgeone.app/" target="_blank" class="grid-card glass-panel span-2 wide">
+                    <i class="fas fa-satellite-dish"></i>
+                    <div class="card-text">
+                        <h3>Job Radar</h3>
+                        <p>AI-Powered Job Search Engine</p>
+                    </div>
+                </a>
+
+                <a href="https://chess-game-5f4ezn1ltb.edgeone.app/" target="_blank"
+                    class="grid-card glass-panel span-2 wide">
+                    <i class="fas fa-chess-king"></i>
+                    <div class="card-text">
+                        <h3>Chess Game</h3>
+                        <p>Interactive Strategy Game</p>
+                    </div>
+                </a>
+
+                <!-- Writing / Blog -->
+                <div class="grid-section-title">Latest Writing</div>
+
+                <a id="medium-article" href="#" target="_blank" class="grid-card glass-panel span-2 wide">
+                    <i class="fab fa-medium"></i>
+                    <div class="card-text">
+                        <h3>Latest Article</h3>
+                        <p>Loading from Medium...</p>
+                    </div>
+                </a>
+
+                <!-- Socials / Other -->
+                <div class="grid-section-title">Socials & More</div>
+
+                <a href="https://youtube.com/@gobertechnologies8002?feature=shares" target="_blank"
+                    class="grid-card glass-panel">
+                    <i class="fab fa-youtube"></i>
+                    <span>YouTube</span>
+                </a>
+                <a href="https://instagram.com/bharathkannan_official?utm_medium=copy_link" target="_blank"
+                    class="grid-card glass-panel">
+                    <i class="fab fa-instagram"></i>
+                    <span>Insta</span>
+                </a>
+                <a href="https://www.facebook.com/bharathkannan.bharathkannan.140" target="_blank"
+                    class="grid-card glass-panel">
+                    <i class="fab fa-facebook"></i>
+                    <span>Facebook</span>
+                </a>
+
+
+
+
+                <a href="https://buymeacoffee.com/rbkannan" target="_blank"
+                    class="grid-card glass-panel span-2 highlight-gold center">
+                    <i class="fas fa-book-open"></i>
+                    <div class="card-text">
+                        <h3>Buy Me A Book</h3>
+                    </div>
+                </a>
+
+                <!-- System Exploration Dashboard (Real Data) -->
+                <div class="grid-card glass-panel span-2 center" onclick="openAnalyticsModal()">
+                    <i class="fas fa-network-wired"></i>
+                    <div class="card-text">
+                        <h3>Market Intelligence</h3>
+                        <p style="font-size: 0.8rem; color: #aaa; margin-top: 5px;">9 Active Signals</p>
+                    </div>
+                </div>
+
+                <!-- Global Intelligence News Wire (Launcher) -->
+                <div class="grid-card glass-panel span-2 center" onclick="openNewsModal()">
+                    <i class="fas fa-globe-americas"></i>
+                    <div class="card-text">
+                        <h3>Global Wire</h3>
+                        <p style="font-size: 0.8rem; color: #aaa; margin-top: 5px;">Live Feed</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-        <div class="link-bar">
-            <a href="README" target="_blank"><i class="fa fa-question-circle fa-lg"></i> What is this?</a>
-            |
-            <a href="https://github.com/oseiskar/black-hole" target="_blank"><i class="fa fa-github fa-lg"></i> Source</a>
-            |
-            <a href="docs/physics.html" target="_blank"><i class="fa fa-lg">&Sigma;</i> Physics</a>
-            |
-            <a href="COPYRIGHT" target="_blank"><i class="fa fa-copyright fa-lg"></i> Copyright</a>
+        <!-- Floating Control Menu (Bottom Right) -->
+        <div id="controls-container">
+            <button id="fab-toggle" class="glass-panel">
+                <i class="fas fa-sliders-h"></i>
+            </button>
+
+            <div id="controls-menu" class="glass-panel">
+                <div class="control-header">
+                    <h3>Settings</h3>
+                </div>
+                <div class="control-content">
+                    <!-- Quality -->
+                    <div class="control-group">
+                        <label><i class="fas fa-tachometer-alt"></i> Quality</label>
+                        <select id="ctrl-quality">
+                            <option value="fast">Fast</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+
+                    <!-- Zoom -->
+                    <div class="control-group">
+                        <label><i class="fas fa-search"></i> Zoom</label>
+                        <input type="range" id="ctrl-distance" min="1.5" max="30" step="0.1" value="11.0">
+                    </div>
+
+                    <!-- Motion -->
+                    <div class="control-group">
+                        <label>
+                            <input type="checkbox" id="ctrl-motion" checked>
+                            Auto Rotation
+                        </label>
+                    </div>
+
+                    <!-- Accretion -->
+                    <div class="control-group">
+                        <label>
+                            <input type="checkbox" id="ctrl-accretion" checked>
+                            Accretion Disk
+                        </label>
+                    </div>
+
+                    <!-- Planet Toggle -->
+                    <div class="control-group">
+                        <label>
+                            <input type="checkbox" id="ctrl-planet-enabled" checked>
+                            Show Planet
+                        </label>
+                    </div>
+
+                    <div id="planet-settings">
+                        <div class="control-group compact">
+                            <label>Dist</label>
+                            <input type="range" id="ctrl-planet-dist" min="1.5" max="20" step="0.1" value="7.0">
+                        </div>
+                        <div class="control-group compact">
+                            <label>Size</label>
+                            <input type="range" id="ctrl-planet-radius" min="0.01" max="2.0" step="0.01" value="0.4">
+                        </div>
+
+                        <hr>
+
+                        <!-- Advanced Controls Section -->
+                        <div class="control-group">
+                            <label style="font-weight: 600; color: #fff;">Advanced Physics</label>
+                            <button id="toggle-advanced" class="icon-btn"><i class="fas fa-microchip"></i></button>
+                        </div>
+
+                        <div id="advanced-settings" style="display: none;">
+
+                            <!-- Observer Inclination -->
+                            <div class="control-group">
+                                <label>Orbital Inclination</label>
+                                <input type="range" id="ctrl-inclination" min="-90" max="90" step="1" value="-10">
+                            </div>
+
+                            <div class="control-group">
+                                <label>
+                                    <input type="checkbox" id="ctrl-light-travel" checked>
+                                    Light Travel Time
+                                </label>
+                            </div>
+
+                            <div class="control-group">
+                                <label>
+                                    <input type="checkbox" id="ctrl-time-dilation" checked>
+                                    Gravitational Time Dilation
+                                </label>
+                            </div>
+
+                            <hr style="opacity: 0.3;">
+
+                            <div class="control-group">
+                                <label>
+                                    <input type="checkbox" id="ctrl-lorentz" checked>
+                                    Lorentz Contraction
+                                </label>
+                            </div>
+
+                            <div class="control-group">
+                                <label>
+                                    <input type="checkbox" id="ctrl-aberration" checked>
+                                    Aberration
+                                </label>
+                            </div>
+
+                            <div class="control-group">
+                                <label>
+                                    <input type="checkbox" id="ctrl-beaming" checked>
+                                    Beaming
+                                </label>
+                            </div>
+
+                            <div class="control-group">
+                                <label>
+                                    <input type="checkbox" id="ctrl-doppler" checked>
+                                    Doppler Shift
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label>Time Scale</label>
+                            <input type="range" id="ctrl-time" min="0" max="20" step="0.1" value="20.0">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <script src="js-libs/jquery-2.1.4.min.js"></script>
-        <script src="js-libs/three.min.js"></script>
-        <script src="js-libs/OrbitControls.js"></script>
-        <script src="js-libs/Detector.js"></script>
-        <script src="js-libs/stats.min.js"></script>
-        <script src="js-libs/ShaderLoader.min.js"></script>
-        <script src="js-libs/mustache.min.js"></script>
-        <script src="js-libs/dat.gui.min.js"></script>
-        <script src="three-js-monkey-patch.js"></script>
+    </div>
 
-        <script id="vertex-shader" type="x-shader/x-vertex">
+    <div id="loader">
+        <div class="spinner"></div>
+        Loading Simulation...
+        <div class="disclaimer">Requires WebGL & decent GPU</div>
+    </div>
 
+    <div id="hint-text" class="initially-hidden">
+        Drag functionality is preserved on the background.
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="audio/bgm.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Toggle Button -->
+    <div id="music-toggle" title="Play Interstellar Theme">
+        <i class="fas fa-music"></i>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="iss-cursor"><i class="fas fa-star"></i></div>
+
+    <script src="js-libs/jquery-2.1.4.min.js"></script>
+    <script src="js-libs/three.min.js"></script>
+    <script src="js-libs/OrbitControls.js"></script>
+    <script src="js-libs/Detector.js"></script>
+    <script src="js-libs/stats.min.js"></script>
+    <script src="js-libs/ShaderLoader.min.js"></script>
+    <script src="js-libs/mustache.min.js"></script>
+    <!-- <script src="js-libs/dat.gui.min.js"></script> REMOVED -->
+    <script src="three-js-monkey-patch.js"></script>
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
             void main()    {
-
                 gl_Position = vec4( position, 1.0 );
-
             }
-
         </script>
-        <script data-src="raytracer.glsl" data-name="raytracer" type="x-shader/x-fragment"></script>
-        <script src="main.js"></script>
+    <script data-src="raytracer.glsl" data-name="raytracer" type="x-shader/x-fragment"></script>
+    <!-- Analytics/Mission Control Modal -->
+    <div id="analytics-modal" class="modal">
+        <div class="modal-content glass-panel">
+            <span class="close-modal" onclick="closeAnalyticsModal()">&times;</span>
+            <div class="modal-header">
+                <h2><i class="fas fa-satellite-dish"></i> Mission Control: Daily Analytics</h2>
+                <div class="modal-date" id="modal-date">DATE: 2024-05-20</div>
+            </div>
 
-    </body>
+            <div class="modal-grid">
+                <!-- Left: Execution Log -->
+                <div class="modal-col">
+                    <h3><i class="fas fa-terminal"></i> System Execution Log</h3>
+                    <div id="detailed-logs" class="log-container">
+                        <!-- JS populates this -->
+                    </div>
+                </div>
+
+                <!-- Right: Generated Reports & Search -->
+                <div class="modal-col">
+                    <h3><i class="fas fa-search-dollar"></i> Custom Analysis</h3>
+                    <!-- Search Controls -->
+                    <div class="search-controls" style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <input type="text" id="symbol-input" placeholder="ENTER SYMBOL (e.g. TATASTEEL)..."
+                            style="flex: 1; padding: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: #fff; border-radius: 4px;">
+                        <button onclick="analyzeCustomStock()"
+                            style="padding: 8px 15px; background: var(--accent-color); border: none; border-radius: 4px; color: #000; font-weight: 700; cursor: pointer;">
+                            SCAN
+                        </button>
+                    </div>
+
+                    <!-- Custom Result Card -->
+                    <div id="custom-result"
+                        style="display: none; margin-bottom: 15px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px; border: 1px solid var(--accent-color);">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div id="res-symbol" style="font-size: 1.2rem; font-weight: 700;">--</div>
+                            <div id="res-price" style="font-size: 1rem;">--</div>
+                        </div>
+                        <div id="res-signal" style="margin-top: 5px; font-weight: 600; color: #aaa;">Analyzing...</div>
+                    </div>
+
+                    <!-- Chart Container -->
+                    <div id="chart-container"
+                        style="height: 150px; background: rgba(0,0,0,0.2); border-radius: 6px; margin-bottom: 15px; position: relative;">
+                        <!-- SVG Chart will be injected here -->
+                    </div>
+
+                    <h3><i class="fas fa-file-invoice"></i> Auto-Generated Reports</h3>
+                    <div id="report-list" class="report-container">
+                        <!-- JS populates this -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- News Feed Modal (New) -->
+    <div id="news-modal" class="modal">
+        <div class="modal-content glass-panel" style="max-width: 600px;">
+            <span class="close-modal" onclick="closeNewsModal()">&times;</span>
+            <div class="modal-header">
+                <h2><i class="fas fa-globe-americas"></i> Global Intelligence Wire</h2>
+                <div class="live-dot" style="margin-left: 10px;"></div>
+            </div>
+            <div id="news-feed-content" class="news-container" style="max-height: 50vh;">
+                <!-- JS populates this -->
+            </div>
+            <div style="text-align: center; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <button onclick="loadMoreNews()"
+                    style="background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 5px 15px; border-radius: 20px; cursor: pointer; font-size: 0.8rem;">
+                    <i class="fas fa-sync"></i> LOAD MORE WIRE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Script -->
+    <script src="main.js"></script>
+
+
+
+</body>
+
 </html>
